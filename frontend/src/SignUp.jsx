@@ -67,7 +67,7 @@ export default function SignUp({ setUser }) {
               return;
             }
 
-            const response = await fetch("http://localhost:5000/api/auth/register", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -121,7 +121,7 @@ export default function SignUp({ setUser }) {
         <div className="google-auth-wrapper">
           <GoogleLogin
             onSuccess={async (credentialResponse) => {
-              const response = await fetch("http://localhost:5000/api/auth/google", {
+              const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/google`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

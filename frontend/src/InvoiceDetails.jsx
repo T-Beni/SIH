@@ -12,8 +12,7 @@ export default function InvoiceDetails() {
   const payInvoice = async () => {
     const token = localStorage.getItem("token");
 
-    const response = await fetch(
-      "http://localhost:5000/api/payments/checkout",
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/checkout`,
       {
         method: "POST",
         headers: {
@@ -39,7 +38,7 @@ export default function InvoiceDetails() {
   const payInvoiceAutomatically = async () => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://localhost:5000/api/payments/pay-saved", {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/pay-saved`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +72,7 @@ export default function InvoiceDetails() {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/api/invoices/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -222,7 +221,7 @@ export default function InvoiceDetails() {
 const payInvoice = async () => {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://localhost:5000/api/payments/checkout", {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/checkout`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -93,7 +93,7 @@ function Home({ user }) {
       setUploadedInvoice(null);
 
       try {
-        const response = await fetch("http://localhost:5000/api/invoices/upload", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices/upload`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -231,7 +231,7 @@ useEffect(() => {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/api/users/me", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

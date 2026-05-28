@@ -18,7 +18,7 @@ export default function InvoiceHistory() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/invoices", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

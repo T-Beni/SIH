@@ -1,0 +1,53 @@
+# Query: http://localhost:5000
+# ContextLines: 1
+
+11 results - 6 files
+
+frontend\src\AIChat.jsx:
+  65      try {
+  66:       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/chat`), {
+  67          method: "POST",
+
+frontend\src\App.jsx:
+   95        try {
+   96:         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices/upload`), {
+   97            method: "POST",
+
+  233  
+  234:     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`), {
+  235        headers: {
+
+frontend\src\InvoiceDetails.jsx:
+   15      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/checkout`),
+   17        {
+
+   41  
+   42:   const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/pay-saved`), {
+   43      method: "POST",
+
+   75        try {
+   76:         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices/${id}`), {
+   77            headers: {
+
+  224  
+  225:   const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payments/checkout`), {
+  226      method: "POST",
+
+frontend\src\InvoiceHistory.jsx:
+  20        try {
+  21:         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/invoices`), {
+  22            headers: {
+
+frontend\src\Login.jsx:
+  54  
+  55:             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`), {
+  56                method: "POST",
+
+frontend\src\SignUp.jsx:
+   69  
+   70:             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`), {
+   71                method: "POST",
+
+  123              onSuccess={async (credentialResponse) => {
+  124:               const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/google`), {
+  125                  method: "POST",
