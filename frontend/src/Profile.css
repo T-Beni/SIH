@@ -35,6 +35,8 @@
   justify-content: center;
   font-size: 34px;
   font-weight: bold;
+  background-size: cover;
+  background-position: center;
 }
 
 .profile-top h1 {

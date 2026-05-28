@@ -26,6 +26,10 @@ export default function Settings({ theme, setTheme }) {
             <input type="email" placeholder="email@example.com" />
           </label>
 
+<button type="button" className="card-btn">
+  Actualizează datele cardului
+</button>
+
           <button type="button">Salvează setările</button>
         </form>
       </div>

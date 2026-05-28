@@ -1,30 +1,47 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Invoice.css";
 
 export default function InvoiceHistory() {
-  const invoices = [
-    {
-      id: "INV-001",
-      supplier: "Smart Energy SRL",
-      date: "06.05.2026",
-      total: "349,99 RON",
-      status: "Plătită",
-    },
-    {
-      id: "INV-002",
-      supplier: "Orange România",
-      date: "03.05.2026",
-      total: "89,50 RON",
-      status: "În așteptare",
-    },
-    {
-      id: "INV-003",
-      supplier: "Electrica Furnizare",
-      date: "28.04.2026",
-      total: "221,30 RON",
-      status: "Procesată",
-    },
-  ];
+  const [invoices, setInvoices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loadInvoices = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setError("Trebuie să fii conectat pentru a vedea istoricul facturilor.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/api/invoices", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          setError(data.message || "Nu am putut încărca facturile.");
+          setLoading(false);
+          return;
+        }
+
+        setInvoices(data);
+      } catch {
+        setError("Serverul nu este disponibil.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadInvoices();
+  }, []);
 
   return (
     <main className="invoice-page">
@@ -32,24 +49,46 @@ export default function InvoiceHistory() {
         <h1>Istoric facturi</h1>
         <p>Vezi facturile încărcate și statusul lor.</p>
 
-        <div className="invoice-list">
-          {invoices.map((invoice) => (
-            <Link
-              to={`/invoice/${invoice.id}`}
-              className="invoice-row"
-              key={invoice.id}
-            >
-              <div>
-                <strong>{invoice.supplier}</strong>
-                <span>{invoice.id}</span>
-              </div>
+        {loading && <p>Se încarcă facturile...</p>}
 
-              <div>{invoice.date}</div>
-              <div>{invoice.total}</div>
-              <div className="invoice-status">{invoice.status}</div>
-            </Link>
-          ))}
-        </div>
+        {error && <div className="auth-error">{error}</div>}
+
+        {!loading && !error && invoices.length === 0 && (
+          <p>Nu ai nicio factură încărcată momentan.</p>
+        )}
+
+        {!loading && !error && invoices.length > 0 && (
+          <div className="invoice-list">
+            {invoices.map((invoice) => (
+              <Link
+                to={`/invoice/${invoice.id}`}
+                className="invoice-row"
+                key={invoice.id}
+              >
+                <div>
+                  <strong>{invoice.supplier_name || "Furnizor necunoscut"}</strong>
+                  <span>{invoice.invoice_number || invoice.id}</span>
+                </div>
+
+                <div>
+                  {invoice.issue_date
+                    ? new Date(invoice.issue_date).toLocaleDateString("ro-RO")
+                    : "-"}
+                </div>
+
+                <div>
+                  {invoice.total_amount
+                    ? `${invoice.total_amount} ${invoice.currency || "RON"}`
+                    : "-"}
+                </div>
+
+                <div className="invoice-status">
+                  {invoice.status || "uploaded"}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Tektur:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root{
   --blue1: 203 100% 38%;
@@ -27,6 +27,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color:hsl(var(--negru));
+  overflow-x:hidden;
 }
 
 .page {
@@ -35,7 +36,9 @@ body {
 }
 
 .navbar {
+  position:fixed;
   height: 64px;
+  width:100%;
   background: transparent;
   display: flex;
   justify-content: flex-end;
@@ -46,6 +49,7 @@ body {
   backdrop-filter: blur(30px);
   box-shadow: 0 0 10px hsl(var(--neutru));
   transition:0.15s;
+  z-index:2;
 }
 ::selection{
   background-color:hsl(var(--blue1));
@@ -59,11 +63,10 @@ body {
   user-select:none;
   transition:0.15s;
   cursor:pointer;
-  font-family:'Tektur';
-  margin-top:-5px;
+  font-family:'Comfortaa';
 }
 .navbar .a:hover{
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 }
 
 .avatar {
@@ -73,6 +76,8 @@ body {
   border-radius: 50%;
   background: hsl(var(--neutru));
   cursor:pointer;
+  background-size: cover;
+  background-position: center;
 }
 .avatar:hover{
   transform: scale(1.2);
@@ -107,19 +112,17 @@ body {
 }
 
 h1 {
-  font-family:'Tektur';
+  font-family:'Comfortaa';
   margin: 0 0 24px;
   font-size: 44px;
-  color: transparent;
-  -webkit-text-stroke: 1.4px hsl(var(--blue1));
-  text-shadow: 0 0 14px hsl(var(--blue2));
+  color: hsl(var(--blue1));
 }
 
 h2 {
   color: hsl(var(--negru-mat));
   font-size: 24px;
   margin: 0 0 18px;
-  font-family:'Tektur';
+  font-family:'Comfortaa';
 }
 
 p {
@@ -169,8 +172,6 @@ button:hover{
   height: 100%;
   z-index: 0;
 }
-
-.navbar,
 .hero {
   position: relative;
   z-index: 1;
@@ -193,6 +194,7 @@ button:hover{
   z-index: 1;
   position:absolute;
   bottom:0px;
+  margin-top:auto;
   font-family:'Inter';
 }
 
@@ -270,4 +272,34 @@ button:hover{
   .mobile-gate {
     display: flex;
   }
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: hsl(var(--blue1));
+  font-size: 18px;
+  font-family: 'Comfortaa';
+  cursor: pointer;
+  transition: 0.15s;
+  margin: 0;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
+.logout-btn:hover {
+  transform: translateY(-5px);
+}
+
+.upload-success {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0, 120, 194, 0.12);
+  border: 1px solid hsl(var(--blue1));
+}
+
+.upload-success p {
+  margin-bottom: 12px;
 }
