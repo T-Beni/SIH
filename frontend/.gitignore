@@ -30,3 +30,5 @@ google-service-account.json
 *.njsproj
 *.sln
 *.sw?
+
+backend/google-service-account.json
